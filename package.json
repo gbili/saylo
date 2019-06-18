@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple Nodejs ES6 (Babel), Mocha/Chai project skeleton",
   "scripts": {
+    "test": "mocha ./src/index.test.js -w",
     "develop": "nodemon ./src/index.js",
     "serve": "node ./src/index.js"
   },
@@ -13,6 +14,8 @@
   "keywords": [
     "nodejs",
     "nodemon",
+    "mocha",
+    "chai",
     "skeleton"
   ],
   "author": "Guillermo Pages <mail@guillermo.at> (https://guillermo.at)",
@@ -22,6 +25,8 @@
   },
   "homepage": "https://github.com/gbili/nodess#readme",
   "devDependencies": {
+    "chai": "4.2.0",
+    "mocha": "6.1.4",
     "nodemon": "1.19.1"
   }
 }
