@@ -8,31 +8,54 @@ This is a skeleton for developing Nodejs projects with:
 ## Usage 
 ### "Installation"
 First off get it on your machine:
-- clone the repo, and edit `package.json`
-- delete upstream reference or delete `.git` and re-init git repo
-- change package name if you like
-
+1. clone the repo and replace `my-project-name` with yours:
+   ```bash
+   git clone git@github.com:gbili/nodess my-project-name
+   ```
+2. `cd my-project-name` and edit `package.json`, mainly the `"name":` and `author`
+   - Optionally and add your own dependencies
+   - Update `package-lock.json` by init and accepting defaults:
+     ```
+     npm init
+     ```
+   - Install dependencies:
+     ```
+     npm install
+     ```
+   - Make sure everything works (following command should say 1 fail an 1 sucess:
+     ```
+     npm test
+     ```
+3. change the git `remote` to point to your own repo (that you have created in advance):
+   ```
+   git remote remove origin
+   git remote add origin git@github.com:myname/my-project-name
+   ```
+4. commit and upload those inital changes
+   ```
+   git commit -am "build: change project purpose"
+   ```
 ### Development
 Start coding:
 - start the `development` server
   ```
-  npm run develop
+  npm develop
   ```
 - from there you can add your own files and strucutre in `src/`
 
 ### Testing
 - Add your own tests in the `./tests/*`, and run them with:
   ```
-  npm run tests
+  npm tests
   ```
 ### Production
 - Build your sourcecode to transpile ES6 into ES5:
   ```
-  npm run build
+  npm build
   ```
 - Upload it to your server and serve it:
   ```
-  npm run serve
+  npm serve
   ```
 
 ## Acknowledgements
