@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-simplest-setup",
+  "version": "1.0.0",
+  "description": "Simple Nodejs ES6 (Babel), Mocha/Chai project skeleton",
+  "scripts": {
+    "develop": "nodemon ./src/index.js",
+    "serve": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gbili/nodess.git"
+  },
+  "keywords": [
+    "nodejs",
+    "nodemon",
+    "skeleton"
+  ],
+  "author": "Guillermo Pages <mail@guillermo.at> (https://guillermo.at)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gbili/nodess/issues"
+  },
+  "homepage": "https://github.com/gbili/nodess#readme",
+  "devDependencies": {
+    "nodemon": "1.19.1"
+  }
+}
