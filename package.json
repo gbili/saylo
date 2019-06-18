@@ -9,7 +9,7 @@
     "build": "babel -d ./build ./src",
     "test": "mocha --require @babel/register --recursive",
     "develop": "nodemon --exec babel-node ./src/index.js",
-    "serve": "node ./build/index.js"
+    "serve": "NODE_ENV=production node ./build/index.js"
   },
   "repository": {
     "type": "git",
