@@ -4,7 +4,7 @@
   "description": "Simple Nodejs ES6 (Babel), Mocha/Chai project skeleton",
   "main": "build/index.js",
   "scripts": {
-    "clean": "rm -r ./build/*",
+    "clean": "rm -fr ./build/*",
     "prebuild": "npm run clean",
     "build": "babel -d ./build ./src",
     "test": "mocha ./src/index.test.js -w",
