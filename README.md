@@ -35,4 +35,10 @@ Start coding:
   npm run serve
   ```
 
+## Acknowledgements
+Many thanks to these guys:
+- https://dev.to/bnorbertjs/my-nodejs-setup-mocha--chai-babel7-es6-43ei
+- http://karloespiritu.github.io/cheatsheets/babel/
+- https://medium.com/@alberto.schiabel/nodejs-in-es6-es7-how-do-you-do-it-in-production-d897c51c729c
+- https://codeburst.io/javascript-unit-testing-using-mocha-and-chai-1d97d9f18e71
 
