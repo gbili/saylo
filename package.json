@@ -9,7 +9,7 @@
     "build": "babel -d ./build ./src",
     "test": "mocha ./src/index.test.js -w",
     "develop": "nodemon --exec babel-node ./src/index.js",
-    "serve": "node ./src/index.js"
+    "serve": "node ./build/index.js"
   },
   "repository": {
     "type": "git",
