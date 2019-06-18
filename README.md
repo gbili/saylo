@@ -39,23 +39,23 @@ First off get it on your machine:
 Start coding:
 - start the `development` server
   ```
-  npm develop
+  npm run develop
   ```
 - from there you can add your own files and strucutre in `src/`
 
 ### Testing
 - Add your own tests in the `./tests/*`, and run them with:
   ```
-  npm tests
+  npm test
   ```
 ### Production
 - Build your sourcecode to transpile ES6 into ES5:
   ```
-  npm build
+  npm run build
   ```
 - Upload it to your server and serve it:
   ```
-  npm serve
+  npm run serve
   ```
 
 ## Acknowledgements
