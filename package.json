@@ -8,7 +8,7 @@
     "prebuild": "npm run clean",
     "build": "babel -d ./build ./src",
     "test": "mocha ./src/index.test.js -w",
-    "develop": "nodemon ./src/index.js",
+    "develop": "nodemon --exec babel-node ./src/index.js",
     "serve": "node ./src/index.js"
   },
   "repository": {
@@ -39,5 +39,6 @@
     "chai": "4.2.0",
     "mocha": "6.1.4",
     "nodemon": "1.19.1"
-  }
+  },
+  "dependencies": {}
 }
