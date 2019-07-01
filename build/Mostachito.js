@@ -25,18 +25,18 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var TemplateEngine =
+var Mostachito =
 /*#__PURE__*/
 function () {
-  function TemplateEngine(missingRefCallback) {
-    _classCallCheck(this, TemplateEngine);
+  function Mostachito(missingRefCallback) {
+    _classCallCheck(this, Mostachito);
 
     this.missingRefCallback = missingRefCallback || function (ref) {
       throw new TypeError('Template references a data which is missing in the view, ref: ' + ref);
     };
   }
 
-  _createClass(TemplateEngine, [{
+  _createClass(Mostachito, [{
     key: "hydrate",
     value: function hydrate(viewTemplate, viewData) {
       viewTemplate = this.replaceArray(viewTemplate, viewData);
@@ -156,8 +156,8 @@ function () {
     }
   }]);
 
-  return TemplateEngine;
+  return Mostachito;
 }();
 
-var _default = TemplateEngine;
+var _default = Mostachito;
 exports["default"] = _default;
