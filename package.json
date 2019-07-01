@@ -1,35 +1,35 @@
 {
-  "name": "nodejs-simplest-setup",
-  "version": "1.0.0",
-  "description": "Simple Nodejs ES6 (Babel), Mocha/Chai project skeleton",
+  "name": "mostachito",
+  "version": "0.0.0-development",
+  "description": "Minimalistic Templating Engine for Nodejs",
   "main": "build/index.js",
   "scripts": {
     "clean": "rm -fr ./build/*",
     "prebuild": "npm run clean",
     "build": "babel -d ./build ./src",
+    "coverage": "nyc npm run test",
     "test": "mocha --require @babel/register --recursive",
     "develop": "nodemon --exec babel-node ./src/index.js",
-    "serve": "NODE_ENV=production node ./build/index.js"
+    "serve": "NODE_ENV=production node ./build/index.js",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/gbili/nodess.git"
+    "url": "https://github.com/gbili/mostachito.git"
   },
   "keywords": [
     "nodejs",
-    "nodemon",
-    "mocha",
-    "chai",
-    "es6",
-    "babel",
-    "skeleton"
+    "templating",
+    "moustache",
+    "simple",
+    "minial"
   ],
   "author": "Guillermo Pages <mail@guillermo.at> (https://guillermo.at)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gbili/nodess/issues"
+    "url": "https://github.com/gbili/mostachito/issues"
   },
-  "homepage": "https://github.com/gbili/nodess#readme",
+  "homepage": "https://github.com/gbili/mostachito#readme",
   "devDependencies": {
     "@babel/cli": "7.4.4",
     "@babel/core": "7.4.5",
@@ -38,7 +38,12 @@
     "@babel/register": "7.4.4",
     "chai": "4.2.0",
     "mocha": "6.1.4",
-    "nodemon": "1.19.1"
+    "nodemon": "1.19.1",
+    "nyc": "^14.1.1",
+    "semantic-release": "^15.13.18"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "directories": {
+    "test": "test"
+  }
 }
