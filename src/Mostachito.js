@@ -1,4 +1,4 @@
-class TemplateEngine {
+class Mostachito {
 
   constructor(missingRefCallback) {
     this.missingRefCallback = missingRefCallback || function(ref) {
@@ -76,4 +76,4 @@ class TemplateEngine {
 
 }
 
-export default TemplateEngine;
+export default Mostachito;

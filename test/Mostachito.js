@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import TemplateEngine from '../src/TemplateEngine';
+import Mostachito from '../src/Mostachito';
 
-describe(`TemplateEngine`, function() {
+describe(`Mostachito`, function() {
   const refs = [
     'siteTitle',
     'nested.child',
@@ -90,8 +90,8 @@ describe(`TemplateEngine`, function() {
     </html>
     `;
 
-  const te = new TemplateEngine();
-  const teWithCallback = new TemplateEngine(ref => ref);
+  const te = new Mostachito();
+  const teWithCallback = new Mostachito(ref => ref);
 
   describe(`getRefList(template)`, function() {
     it('should return a list of all references in the template', function() {
