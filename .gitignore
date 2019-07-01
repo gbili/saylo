@@ -1,3 +1,7 @@
+# nyc
+.nyc_output
+converage
+*.lcov
 # vim
 *.swp
 # Logs
