@@ -7,11 +7,11 @@
     "clean": "rm -fr ./build/*",
     "prebuild": "npm run clean",
     "build": "babel -d ./build ./src",
-    "coverage": "nyc npm run test",
+    "coverage:generate": "nyc npm run test",
     "coverage:check": "nyc check-coverage --lines 90 --branches 80 --statements 90 --functions 90",
-    "coverage:report:generate": "nyc report --reporter=text-lcov > coverage.lcov",
-    "coverage:report:up": "CODECOV_TOKEN=f96b3547-9fde-414a-9b33-e2d258138970 codecov",
-    "coverage-all": "npm run coverage:report:generate && npm run coverage:report:up && npm run coverage:check",
+    "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov",
+    "coverage:report:upload": "CODECOV_TOKEN=f96b3547-9fde-414a-9b33-e2d258138970 codecov",
+    "coverage": "npm run coverage:generate && npm run coverage:check && npm run coverage:report && npm run coverage:report:upload",
     "test": "mocha --require @babel/register --recursive",
     "develop": "nodemon --exec babel-node ./src/index.js",
     "serve": "NODE_ENV=production node ./build/index.js",
@@ -19,7 +19,7 @@
   },
   "config": {
       "ghooks": {
-          "pre-commit": "npm run test"
+          "pre-commit": "npm run test && npm run coverage:generate && npm run coverage:check"
       }
   },
   "repository": {

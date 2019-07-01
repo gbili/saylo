@@ -10,7 +10,7 @@ jobs:
       node_js: lts/*
       script:
         - npm t
-        - npm run report-coverage
+        - npm run coverage
     - stage: release
       language: node_js
       env:
