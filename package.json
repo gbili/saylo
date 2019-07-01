@@ -8,11 +8,19 @@
     "prebuild": "npm run clean",
     "build": "babel -d ./build ./src",
     "coverage": "nyc npm run test",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "coverage:check": "nyc check-coverage --lines 90 --branches 80 --statements 90 --functions 90",
+    "coverage:report:generate": "nyc report --reporter=text-lcov > coverage.lcov",
+    "coverage:report:up": "CODECOV_TOKEN=f96b3547-9fde-414a-9b33-e2d258138970 codecov",
+    "coverage-all": "npm run coverage:report:generate && npm run coverage:report:up && npm run coverage:check",
     "test": "mocha --require @babel/register --recursive",
     "develop": "nodemon --exec babel-node ./src/index.js",
     "serve": "NODE_ENV=production node ./build/index.js",
     "semantic-release": "semantic-release"
+  },
+  "config": {
+      "ghooks": {
+          "pre-commit": "npm run test"
+      }
   },
   "repository": {
     "type": "git",
@@ -23,7 +31,7 @@
     "templating",
     "moustache",
     "simple",
-    "minial"
+    "minimal"
   ],
   "author": "Guillermo Pages <mail@guillermo.at> (https://guillermo.at)",
   "license": "MIT",
@@ -39,6 +47,7 @@
     "@babel/register": "7.4.4",
     "chai": "4.2.0",
     "codecov": "^3.5.0",
+    "ghooks": "^2.0.4",
     "mocha": "6.1.4",
     "nodemon": "1.19.1",
     "nyc": "^14.1.1",
