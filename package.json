@@ -2,7 +2,7 @@
   "name": "mostachito",
   "version": "0.0.0-development",
   "description": "Minimalistic Templating Engine for Nodejs",
-  "main": "build/index.js",
+  "main": "build/Mostachito.js",
   "scripts": {
     "clean": "rm -fr ./build/*",
     "prebuild": "npm run clean",
