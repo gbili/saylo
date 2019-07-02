@@ -1,87 +1,42 @@
-# Mostachito
-![travis build](https://img.shields.io/travis/gbili/mostachito.svg?style=flat-square)
-![code coverage](https://img.shields.io/codecov/c/github/gbili/mostachito.svg)
-![version](https://img.shields.io/npm/v/mostachito.svg)
-![downloads](https://img.shields.io/npm/dm/mostachito.svg)
-![license](https://img.shields.io/npm/l/mostachito.svg)
+# Nomonichas
+![travis build](https://img.shields.io/travis/gbili/nomonichas.svg?style=flat-square)
+![code coverage](https://img.shields.io/codecov/c/github/gbili/nomonichas.svg)
+![version](https://img.shields.io/npm/v/nomonichas.svg)
+![downloads](https://img.shields.io/npm/dm/nomonichas.svg)
+![license](https://img.shields.io/npm/l/nomonichas.svg)
 
-> **Disclaimer**: a very simplistic templating engine.
+> A working base setup in July 2019 using Nodejs, Mocha, Nyc, Istanbul, Chai, Semantic-Release, Travis-ci and Codecov.io
+
+> **Note**: About Travis and Codecov.io, if you are developming a private project, it may make sense to switch to other services like CircleCi and something to replace codecov.io if you are on a tight budget.
 
 ## Usage
-### Syntax
-- Template references: 
-  - Simple `{{ myVar }}`
-  - Nested data `{{ my.var.is.nested }}`
-  - Iterable
-    ```
-    {{posts as post
-      The post with name: {{ post.title }}, was created on {{ post.date }}!
-    posts}}
-    ```
-- Passing the template and data to the template engine
-  ```javascript
-  import Mostachito from 'mostachio';
-  const te = new Mostachito();
-
-  const myText = 'Hello {{ my.data.is.deep }}, how are you ?';
-  const data = { my : { data : { is : { deep : 'Liz' } } } };
-
-  const replacedText = te.replace(myText, data);
-  console.log(replacedText);// "Hello Liz, how are you ?"
-  ```
-
-## Example
-
-Create a view like so:
-```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ siteTitle }}</title>
-    <meta name="description" content="Simplest Blog in Nodejs">
-    <meta name="author" content="George Mostachito">
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-    <link rel="stylesheet" href="css/highlight-js-github.css">
-  </head>
-
-  <body>
-    <h1>{{ siteTitle }}</h1>
-    <h2>{{ missingRef }}, {{ hey.missingRef }}, {{ hey.hoy.missingRef }}</h2>
-    <ul>
-      {{posts as post
-      <li><a href="/{{ post.attributes.slug }}">{{ post.attributes.title }}</a><div class="post-preview">{{ post.body }}</div></li>
-      posts}}
-    </ul>
-  </body>
-</html>
+Create a repo on github.com / bitbucket.com and use that name in place of `your-project-name`.
+Clone this repo into your computer
+```
+$ git clone git@github.com:gbili/nomonichas your-project-name
+$ git remote remove origin
+$ git remote add origin git@github.com:your-name/your-project-name
 ```
 
-Import the contents and replace:
-```javascript
-  import Mostachito from 'mostachio';
+Then change the name.
+```
+vim package.json
+:.,$s/nomonichas/your-project-name/g <enter>
+:.,$s/gbili/your-name/g <enter>
+:wq
+```
 
-  function loadViewTemplate(viewData) {
-    return new Promise(function(resolve, reject) {
-      fs.readFile('path/to/my/template.html', 'utf-8', function(err, viewTemplate) {
-        if (err) return reject(err);
-        resolve({viewTemplate, viewData});
-      });
-    });
-  }
+Adapt the code in `src/` and `test/`
 
-  function hydrateView({viewTemplate, viewData}) {
-    const configViewData = this.config.viewData || {};
-    viewData = {...configViewData, ...viewData};
-    const mostachito = new Mostachito(this.config.missingRefValueReplacement);
-    const hydratedView = mostachito.hydrate(viewTemplate, viewData);
-    this.response.code = 200;
-    this.response.headers = {'content-type': 'text/html; charset=utf-8'};
-    this.response.body = hydratedView;
-    return this.response;
-  }
+Then initialize and build
+```
+npm init
+npm install
+npm run build
+```
 
-  loadViewTemplate({my: 'viewData'}, that: 'I want to pass', arr: ['a', 'b', 'c', 'd'])
-   .then(hydrateView)
-   .catch(err => console.log(err));
+Finally make commit and push changes
+```
+git commit -Am "feat: setup base project"
+git push origin master
 ```
