@@ -9,6 +9,8 @@
 
 > **Note**: About Travis and Codecov.io, if you are developming a private project, it may make sense to switch to other services like CircleCi and something to replace codecov.io if you are on a tight budget.
 
+> **Note 2**: About Codecov.io, you should not be putting the codecov tokens in `package.json` as in this repo. Here I'm exposing private tokens which is really dangerous. I should really change this to use `.env` file.
+
 ## Usage
 Create a repo on github.com / bitbucket.com and use that name in place of `your-project-name`.
 Clone this repo into your computer
