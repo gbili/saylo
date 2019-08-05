@@ -1,14 +1,8 @@
-import 'dotenv/config';
 import { expect } from 'chai';
 import MysqlReq from '../src/MysqlReq';
 import logger from '../src/utils/logger';
 
 let setup = async function () {
-  if (process.env.LOGGING === '1') {
-    logger.turnOn();
-  } else {
-    logger.turnOff();
-  }
   await MysqlReq.removeConnection();
 }
 
