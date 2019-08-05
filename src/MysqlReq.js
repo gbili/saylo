@@ -138,7 +138,7 @@ class MysqlReq {
     }
 
     if (typeof after === 'function') {
-      after(res);
+      res = after(res);
     }
 
     return res;

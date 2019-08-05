@@ -109,5 +109,12 @@ describe(`MysqlReq`, function() {
       expect(await MysqlReq.query({sql: 'SHOW TABLES'})).to.be.an('array');
       await setup();
     });
+
+    it('return an array on select should be altered by "after" param', async function() {
+      await MysqlReq.removeConnection();
+      expect(MysqlReq.hasConnection()).to.be.equal(false);
+      expect(await MysqlReq.query({sql: 'SHOW TABLES', after: res => 'altered'})).to.be.equal('altered');
+      await setup();
+    });
   });
 });
