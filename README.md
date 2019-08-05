@@ -5,40 +5,53 @@
 ![downloads](https://img.shields.io/npm/dm/nomonichas.svg)
 ![license](https://img.shields.io/npm/l/nomonichas.svg)
 
-> A working base setup in July 2019 using Nodejs, Mocha, Nyc, Istanbul, Chai, Semantic-Release, Travis-ci and Codecov.io
+# Mysql Oh Wait! (Mysql await)
+Uses the great `mysqljs/mysql` package and wraps around it to facilitate getting results as a return from `MysqlReq.query()`. Instead of needing to use callbacks, this package uses `Promises` and the `async / await` syntax which is much easier.
+On top of that the advantage (if you need this feature of course) is that you don't need to worry about `connections` not being closed or open at the moment of querying.
 
-> **Note**: About Travis and Codecov.io, if you are developming a private project, it may make sense to switch to other services like CircleCi and something to replace codecov.io if you are on a tight budget.
+## Installation
+To install this npm package do
 
-> **Note 2**: About Codecov.io, you should not be putting the codecov tokens in `package.json` as in this repo. Here I'm exposing private tokens which is really dangerous. I should really change this to use `.env` file.
+```
+npm i -P mysql-oh-wait
+```
 
 ## Usage
-Create a repo on github.com / bitbucket.com and use that name in place of `your-project-name`.
-Clone this repo into your computer
-```
-$ git clone git@github.com:gbili/nomonichas your-project-name
-$ git remote remove origin
-$ git remote add origin git@github.com:your-name/your-project-name
-```
-
-Then change the name.
-```
-vim package.json
-:.,$s/nomonichas/your-project-name/g <enter>
-:.,$s/gbili/your-name/g <enter>
-:wq
+### MysqlReq
+Then from your javascript files import either `MysqlReq` or `MysqlDump` with
+```javascript
+//var MysqlReq = require('mysql-oh-wait').MysqlReq;
+import { MysqlReq } from require('mysql-oh-wait');
 ```
 
-Adapt the code in `src/` and `test/`
+Then you can directly query your database:
+```javascript
+//import 'dotenv/config'; // this will get connection settings from .env file
 
-Then initialize and build
-```
-npm init
-npm install
-npm run build
+import { MysqlReq, MysqlDump } from require('mysql-oh-wait');
+
+const res = await MysqlReq.query({sql: 'SELECT * FROM MyTable WHERE ?', values: {myCol: 'myValue'}});
+console.log(res); // [ { myCol: 'myValue', ...otherColumns }, { myCol: 'myValue', ...otherColumns2 }, ...otherRows ]
 ```
 
-Finally make commit and push changes
+This is assuming you have set the connection details in environement variables like:
 ```
-git commit -Am "feat: setup base project"
-git push origin master
+process.env.DB_HOST = 'myhost'
+process.env.DB_USER = 'myuser'
+process.env.DB_PASSWORD = 'mypwd'
+process.env.DB_NAME = 'mydbname'
 ```
+Or you can store these in a `.env` file. In which case the `import 'dotenv/config';` statement will load them for you. (You need to `npm i -P dotenv` for this to work.
+
+### MysqlDump
+If you want to create the database tables from an sql file you can use `MysqlDump`
+```javascript
+//var MysqlDump = require('mysql-oh-wait').MysqlDump;
+import { MysqlDump } from require('mysql-oh-wait');
+```
+Then if you have an mysqldump file somewhere you can simply do:
+```javascript
+import { MysqlDump } from require('mysql-oh-wait');
+await MysqlDump.executeSqlFile(`${__dirname}/mysqldump.sql`);
+```
+This should have loaded all your tables in the database. Again, assuming you have database connection config in `process.env.DB_...` properties.
