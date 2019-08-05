@@ -4,6 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+require("dotenv/config");
+
 let loggerIsOn = false;
 const logger = {
   turnOn: function () {
@@ -16,5 +19,12 @@ const logger = {
     loggerIsOn && console.log(...params);
   }
 };
+
+if (process.env.LOGGING === '1') {
+  logger.turnOn();
+} else {
+  logger.turnOff();
+}
+
 var _default = logger;
 exports.default = _default;
