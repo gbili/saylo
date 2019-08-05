@@ -1,7 +1,7 @@
 {
   "name": "mysql-oh-wait",
   "version": "v0.1.4",
-  "description": "Mysqljs Wrapper with async / await returning results, single connection waranty per process",
+  "description": "mysql wrapper with async / await returning results, single connection waranty per process",
   "main": "build/index.js",
   "scripts": {
     "clean": "rm -fr ./build/*",
@@ -28,10 +28,13 @@
   },
   "keywords": [
     "nodejs",
-    "templating",
-    "moustache",
-    "simple",
-    "minimal"
+    "mysql",
+    "async",
+    "await",
+    "promise",
+    "return",
+    "query",
+    "wrapper"
   ],
   "author": "Guillermo Pages <mail@guillermo.at> (https://guillermo.at)",
   "license": "MIT",

@@ -1,12 +1,11 @@
 # Nomonichas
-![travis build](https://img.shields.io/travis/gbili/nomonichas.svg?style=flat-square)
-![code coverage](https://img.shields.io/codecov/c/github/gbili/nomonichas.svg)
-![version](https://img.shields.io/npm/v/nomonichas.svg)
-![downloads](https://img.shields.io/npm/dm/nomonichas.svg)
-![license](https://img.shields.io/npm/l/nomonichas.svg)
+![code coverage](https://img.shields.io/codecov/c/github/gbili/mysql-oh-wait.svg)
+![version](https://img.shields.io/npm/v/mysql-oh-wait.svg)
+![downloads](https://img.shields.io/npm/dm/mysql-oh-wait.svg)
+![license](https://img.shields.io/npm/l/mysql-oh-wait.svg)
 
 # Mysql Oh Wait! (Mysql await)
-Uses the great `mysqljs/mysql` package and wraps around it to facilitate getting results as a return from `MysqlReq.query()`. Instead of needing to use callbacks, this package uses `Promises` and the `async / await` syntax which is much easier.
+Uses the great node `mysqljs/mysql` package and wraps around it to facilitate getting results as a return from `MysqlReq.query()`. Instead of needing to use callbacks, this package uses `Promises` and the `async / await` syntax which is much easier.
 On top of that the advantage (if you need this feature of course) is that you don't need to worry about `connections` not being closed or open at the moment of querying.
 
 ## Installation
@@ -21,14 +20,14 @@ npm i -P mysql-oh-wait
 Then from your javascript files import either `MysqlReq` or `MysqlDump` with
 ```javascript
 //var MysqlReq = require('mysql-oh-wait').MysqlReq;
-import { MysqlReq } from require('mysql-oh-wait');
+import { MysqlReq } from 'mysql-oh-wait';
 ```
 
 Then you can directly query your database:
 ```javascript
 //import 'dotenv/config'; // this will get connection settings from .env file
 
-import { MysqlReq, MysqlDump } from require('mysql-oh-wait');
+import { MysqlReq, MysqlDump } from 'mysql-oh-wait';
 
 const res = await MysqlReq.query({sql: 'SELECT * FROM MyTable WHERE ?', values: {myCol: 'myValue'}});
 console.log(res); // [ { myCol: 'myValue', ...otherColumns }, { myCol: 'myValue', ...otherColumns2 }, ...otherRows ]
@@ -47,11 +46,11 @@ Or you can store these in a `.env` file. In which case the `import 'dotenv/confi
 If you want to create the database tables from an sql file you can use `MysqlDump`
 ```javascript
 //var MysqlDump = require('mysql-oh-wait').MysqlDump;
-import { MysqlDump } from require('mysql-oh-wait');
+import { MysqlDump } from 'mysql-oh-wait';
 ```
 Then if you have an mysqldump file somewhere you can simply do:
 ```javascript
-import { MysqlDump } from require('mysql-oh-wait');
+import { MysqlDump } from 'mysql-oh-wait';
 await MysqlDump.executeSqlFile(`${__dirname}/mysqldump.sql`);
 ```
 This should have loaded all your tables in the database. Again, assuming you have database connection config in `process.env.DB_...` properties.
