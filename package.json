@@ -1,6 +1,6 @@
 {
   "name": "mysql-oh-wait",
-  "version": "0.0.0-development",
+  "version": "v0.1.1",
   "description": "Mysqljs Wrapper with async / await returning results, single connection waranty per process",
   "main": "build/index.js",
   "scripts": {
