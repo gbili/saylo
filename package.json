@@ -58,8 +58,7 @@
     "nyc": "^14.1.1",
     "semantic-release": "^15.13.19"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "directories": {
     "test": "test"
   }
