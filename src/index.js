@@ -1,4 +1,5 @@
 import logger from './logger';
 
-export { logger, log: logger.log };
+const log = logger.log;
+export { logger, log };
 export default logger;
