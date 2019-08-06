@@ -1,4 +1,3 @@
-import 'dotenv/config';
 let loggerIsOn = false;
 const logger = {
   turnOn: function() {
@@ -9,10 +8,11 @@ const logger = {
   },
   log: function(...params) {
     loggerIsOn && console.log(...params);
+    return loggerIsOn;
   },
 }
 
-if (process.env.LOGGING === '1') {
+if (process.env.SAYLO_LOGGING && (process.env.SAYLO_LOGGING !== '0') || process.env.SAYLO_LOGGING === '1') {
   logger.turnOn();
 } else {
   logger.turnOff();

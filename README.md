@@ -1,56 +1,55 @@
-# Nomonichas
-![code coverage](https://img.shields.io/codecov/c/github/gbili/mysql-oh-wait.svg)
-![version](https://img.shields.io/npm/v/mysql-oh-wait.svg)
-![downloads](https://img.shields.io/npm/dm/mysql-oh-wait.svg)
-![license](https://img.shields.io/npm/l/mysql-oh-wait.svg)
-
-# Mysql Oh Wait! (Mysql await)
-Uses the great node `mysqljs/mysql` package and wraps around it to facilitate getting results as a return from `MysqlReq.query()`. Instead of needing to use callbacks, this package uses `Promises` and the `async / await` syntax which is much easier.
-On top of that the advantage (if you need this feature of course) is that you don't need to worry about `connections` not being closed or open at the moment of querying.
+# Saylo (turn on/off console.log)
+![code coverage](https://img.shields.io/codecov/c/github/gbili/saylo.svg)
+![version](https://img.shields.io/npm/v/saylo.svg)
+![downloads](https://img.shields.io/npm/dm/saylo.svg)
+![license](https://img.shields.io/npm/l/saylo.svg)
 
 ## Installation
 To install this npm package do
 
 ```
-npm i -P mysql-oh-wait
+npm i -P saylo
 ```
 
 ## Usage
-### MysqlReq
-Then from your javascript files import either `MysqlReq` or `MysqlDump` with
+Then from your javascript files import either `logger` or `log` directly with:
 ```javascript
-//var MysqlReq = require('mysql-oh-wait').MysqlReq;
-import { MysqlReq } from 'mysql-oh-wait';
+//var logger = require('saylo');
+import logger from 'saylo';
+import { log } from 'saylo';
 ```
 
-Then you can directly query your database:
+Then you can replace your console.log with either `log()` or `logger.log()`:
 ```javascript
-//import 'dotenv/config'; // this will get connection settings from .env file
+import logger from 'saylo';
 
-import { MysqlReq, MysqlDump } from 'mysql-oh-wait';
+const a = 'Hey there how are you?';
+const b = function() { 'any type goes' };
+logger.log('my log output is: ', a, b); // 'my log output is: ', 'Hey there how are you?' , function () {'any type goes'}
 
-const res = await MysqlReq.query({sql: 'SELECT * FROM MyTable WHERE ?', values: {myCol: 'myValue'}});
-console.log(res); // [ { myCol: 'myValue', ...otherColumns }, { myCol: 'myValue', ...otherColumns2 }, ...otherRows ]
+logger.turnOff();
+logger.log('my log output is: ', a, b); // no output
+
+logger.turnOn();
+logger.log('my log output is: ', a, b); // 'my log output is: ', 'Hey there how are you?' , function () {'any type goes'}
 ```
 
-This is assuming you have set the connection details in environement variables like:
+## Control through env vars
+Before you load the logger module, you can set the environement variable `SAYLO_LOGGING` like:
 ```
-process.env.DB_HOST = 'myhost'
-process.env.DB_USER = 'myuser'
-process.env.DB_PASSWORD = 'mypwd'
-process.env.DB_NAME = 'mydbname'
+process.env.SAYLO_LOGGING=1
+// or
+process.env.SAYLO_LOGGING=0
 ```
-Or you can store these in a `.env` file. In which case the `import 'dotenv/config';` statement will load them for you. (You need to `npm i -P dotenv` for this to work.
+and it will turn the logger on or off. You can also store these in a `.env` file. In which case the `import 'dotenv/config';` statement will load them for you. (You need to `npm i -P dotenv` for this to work.
 
-### MysqlDump
-If you want to create the database tables from an sql file you can use `MysqlDump`
-```javascript
-//var MysqlDump = require('mysql-oh-wait').MysqlDump;
-import { MysqlDump } from 'mysql-oh-wait';
-```
-Then if you have an mysqldump file somewhere you can simply do:
-```javascript
-import { MysqlDump } from 'mysql-oh-wait';
-await MysqlDump.executeSqlFile(`${__dirname}/mysqldump.sql`);
-```
-This should have loaded all your tables in the database. Again, assuming you have database connection config in `process.env.DB_...` properties.
+## Roadmap
+Next step:
+- Create logging sets and subsets, which you can turn on or off for finer control
+  ```
+  logger('level1').log('my string to log');
+  logger('level2').log('my string to log');
+  // or
+  logger1.log('my string to log');
+  logger2.log('my string to log');
+  ```

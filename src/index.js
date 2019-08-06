@@ -1,5 +1,4 @@
-import MysqlReq from './MysqlReq';
-import MysqlDump from './MysqlDump';
+import logger from './logger';
 
-export { MysqlReq, MysqlDump };
-export default MysqlReq;
+export { logger, log: logger.log };
+export default logger;
