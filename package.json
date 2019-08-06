@@ -1,6 +1,6 @@
 {
   "name": "saylo",
-  "version": "v0.1.0",
+  "version": "v0.1.1",
   "description": "use logger.log instead of console.log and you can mute unmute (turn on or off) console.log calls",
   "main": "build/index.js",
   "scripts": {
