@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import logger from '../src/logger';
+import { logger } from '../src/index';
 
 describe(`logger`, function() {
   describe(`logger.turnOn()`, function() {

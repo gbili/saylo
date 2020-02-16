@@ -1,5 +1,5 @@
-import logger from './logger';
+import Logger from './Logger';
 
-const log = logger.log;
-export { logger, log };
-export default logger;
+export const logger = new Logger();
+export const log = logger.log;
+export default Logger;
