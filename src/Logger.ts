@@ -1,46 +1,50 @@
-type OnOffMap = { [k: string]: boolean };
+type LoggerOnOffMap = {
+  log?: boolean;
+  debug?: boolean;
+  error?: boolean;
+}
 
-class Logger {
-  // TODO: Horrible hack, wrapped OnOffMap into a callback to comply to [k: string]: (..args: any[]) => any
-  private onOffMap: () => OnOffMap; 
-  [k: string]: (...args: any[]) => any;
+type LoggingFunction = (...args: any[]) => void;
 
-  constructor(onOffMap?: OnOffMap) {
-    const oom = onOffMap || {
-      log: true,
-      debug: false,
-    };
-    this.onOffMap = () => oom;
-    const onMap = Object.keys(oom).filter(k => oom[k] === true);
-    this.turnOn(Object.keys(onMap));
-    const offMap = Object.keys(oom).filter(k => oom[k] !== true);
-    this.turnOff(Object.keys(offMap));
+export interface LoggerInterface {
+  log: LoggingFunction;
+  debug: LoggingFunction;
+  error: LoggingFunction;
+}
+
+class Logger implements LoggerInterface {
+  public log: LoggingFunction;
+  public debug: LoggingFunction;
+  public error: LoggingFunction;
+
+  constructor(onOffMap?: LoggerOnOffMap) {
+    this.log = onOffMap?.log ? this.turnOn('log') : this.turnOff('log');
+    this.debug = onOffMap?.debug ? this.turnOn('debug') : this.turnOff('debug');
+    this.error = onOffMap?.error ? this.turnOn('error') : this.turnOff('error');
   }
 
-  turnOn(levels?: string | string[]) {
-    levels = levels || Object.keys(this.onOffMap());
-    this._turnInto(levels, function(...params: any[]){
-      console.log(...params);
-      return params;
+  turnOn(level?: keyof Logger) {
+    const levels = level ? [level] : (['log', 'debug', 'error'] as (keyof Logger)[]);
+    return this.turn(levels, console.log.bind(console));
+  }
+
+  turnOff(level?: keyof Logger) {
+    const levels = level ? [level] : (['log', 'debug', 'error'] as (keyof Logger)[]);
+    return this.turn(levels, () => undefined);
+  }
+
+  turn(levels: (keyof Logger)[], l: LoggingFunction) {
+    levels.map(level => {
+      if (level === 'log') {
+        this.log = l;
+      } else if (level === 'debug') {
+        this.debug = l;
+      } else if (level === 'error') {
+        this.error = l;
+      }
     });
+    return l;
   }
-
-  turnOff(levels?: string | string[]) {
-    levels = levels || Object.keys(this.onOffMap());
-    this._turnInto(levels, function(){});
-  }
-
-  _turnInto<T extends (...args: any[]) => any>(levels: string | string[], into: T) {
-    if (typeof levels === 'string') {
-      levels = [levels];
-    } else if (typeof levels === 'undefined') {
-      levels = Object.keys(this.onOffMap()); //all on
-    }
-    for(let level of levels) {
-      this[level] = into;
-    }
-  }
-
 }
 
 export default Logger;
