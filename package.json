@@ -49,11 +49,10 @@
     "dotenv": "^8.0.0",
     "ghooks": "^2.0.4",
     "marked": "0.8.0",
-    "mocha": "6.1.4",
-    "nodemon": "1.19.1",
+    "mocha": "^6.2.3",
+    "nodemon": "^2.0.12",
     "nyc": "^14.1.1"
   },
-  "dependencies": {},
   "directories": {
     "test": "test"
   }
