@@ -1,6 +1,6 @@
 {
   "name": "saylo",
-  "version": "v0.6.1",
+  "version": "v0.6.2",
   "description": "use logger.log instead of console.log and you can mute unmute (turn on or off) console.log calls",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -25,8 +25,10 @@
     "@types/chai": "5.0.1",
     "@types/mocha": "10.0.10",
     "@types/node": "22.13.5",
+    "@types/sinon": "^17.0.4",
     "chai": "5.2.0",
-    "mocha": "^11.1.0"
+    "mocha": "^11.1.0",
+    "sinon": "^19.0.2"
   },
   "directories": {
     "test": "test"
