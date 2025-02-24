@@ -1,5 +1,8 @@
-import Logger from './Logger';
+import chattyLogger, { logger, silentLogger, type Logger } from './Logger';
 
-export const logger = new Logger();
-export const log = logger.log;
-export default Logger;
+export {
+  Logger,
+  chattyLogger,
+  logger,
+  silentLogger,
+}
